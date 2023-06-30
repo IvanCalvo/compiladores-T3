@@ -1,4 +1,4 @@
-## Trabalho 2 da disciplina de Compiladores
+## Trabalho 3 da disciplina de Compiladores
 
 ## Autores
 
