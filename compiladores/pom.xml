@@ -28,17 +28,18 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4</artifactId>
-      <version>4.7.2</version>
+      <version>4.11.1</version>
       <classifier>complete</classifier>
     </dependency>
   </dependencies>
+  
 
   <build>
       <plugins>
         <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.7.2</version>
+                <version>4.11.1</version>
                 <configuration>
                   <visitor>true</visitor>
                 </configuration>
@@ -56,7 +57,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                      <mainClass>compiladores.t3.App</mainClass>
+                      <mainClass>compiladores.App</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
