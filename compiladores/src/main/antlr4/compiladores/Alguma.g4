@@ -5,10 +5,10 @@
     Vinícius Borges de Lima RA: 795316
 
     -> para gerar os arquivos é utilizado o seguinte comando:
-        antlr4 -Dlanguage=Python3 gramatica.g4
+        antlr4 -Dlanguage=Python3 Alguma.g4
 */
 
-grammar gramatica;
+grammar Alguma;
 
 // Numeros inteiros e reais
 NUM_INT 
