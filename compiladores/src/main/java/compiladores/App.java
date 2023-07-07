@@ -15,9 +15,6 @@ public class App {
         int val = parser.programa().val;
         System.out.println("Valor = " + val);
         */
-        gramaticaLexer lexer = new gramaticaLexer(cs);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        gramaticaParser parser = new gramaticaParser(tokens);
-        
+
     }
 }
