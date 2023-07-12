@@ -41,6 +41,18 @@ public class AlgumaBaseListener implements AlgumaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDecl_local_global(AlgumaParser.Decl_local_globalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDecl_local_global(AlgumaParser.Decl_local_globalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracao_local(AlgumaParser.Declaracao_localContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -48,6 +60,42 @@ public class AlgumaBaseListener implements AlgumaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracao_local(AlgumaParser.Declaracao_localContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracao_variavel(AlgumaParser.Declaracao_variavelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracao_variavel(AlgumaParser.Declaracao_variavelContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracao_constante(AlgumaParser.Declaracao_constanteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracao_constante(AlgumaParser.Declaracao_constanteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracao_tipo(AlgumaParser.Declaracao_tipoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracao_tipo(AlgumaParser.Declaracao_tipoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

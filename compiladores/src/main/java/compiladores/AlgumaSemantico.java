@@ -1,6 +1,9 @@
 package compiladores;
 
 import compiladores.AlgumaParser.Declaracao_globalContext;
+import compiladores.AlgumaParser.Declaracao_constanteContext;
+import compiladores.AlgumaParser.Declaracao_tipoContext;
+import compiladores.AlgumaParser.Declaracao_variavelContext;
 import compiladores.AlgumaParser.Declaracao_localContext;
 import compiladores.AlgumaParser.DeclaracoesContext;
 import compiladores.AlgumaParser.ProgramaContext;
@@ -9,43 +12,145 @@ import compiladores.AlgumaParser.CmdAtribuicaoContext;
 import compiladores.AlgumaParser.Tipo_basico_identContext;
 import compiladores.TabelaDeSimbolos.TipoAlguma;
 
-public class AlgumaSemantico extends AlgumaBaseVisitor<Void> {
-    TabelaDeSimbolos tabela;
+public class AlgumaSemantico extends AlgumaBaseVisitor {
+    
+    Escopos escopos = new Escopos();
 
     @Override
-    public Void visitPrograma(AlgumaParser.ProgramaContext ctx) {
-        tabela = new TabelaDeSimbolos();
+    public Object visitPrograma(ProgramaContext ctx) {
         return super.visitPrograma(ctx);
     }
 
     @Override
-    public Void visitDeclaracao_local(AlgumaParser.Declaracao_localContext ctx){
-        String nomeVar = ctx.variavel().getText();
-        String strTipoVar = ctx.tipo().getText();
-        TipoAlguma tipoVar = TipoAlguma.INVALIDO;
-        switch (strTipoVar) {
-            case "INTEIRO":
-                tipoVar = TipoAlguma.INTEIRO;
-                break;
-            case "REAL":
-                tipoVar = TipoAlguma.REAL;
-                break;
-            default:
-                // Nunca irá acontecer, pois o analisador sintático
-                // não permite
-                break;
-        }
-
-        // Verificar se a variável já foi declarada
-        if (tabela.existe(nomeVar)) {
-            AlgumaSemanticoUtils.adicionarErroSemantico(ctx.variavel().getSymbol(), "Variável " + nomeVar + " já existe");
+    public Object visitDeclaracao_constante(Declaracao_constanteContext ctx) {
+        TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
+        if (escopoAtual.existe(ctx.IDENT().getText())) {
+            AlgumaSemanticoUtils.adicionarErroSemantico(ctx.start, "constante" + ctx.IDENT().getText()
+                    + " ja declarado anteriormente");
         } else {
-            tabela.adicionar(nomeVar, tipoVar);
+            TabelaDeSimbolos.TipoAlguma tipo = TabelaDeSimbolos.TipoAlguma.INTEIRO;
+            switch(ctx.tipo_basico().getText()) {
+               case "literal": 
+                        tipo = TabelaDeSimbolos.TipoAlguma.CADEIA;
+                        break;
+               case "inteiro": 
+                        tipo = TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                        break;
+               case "real": 
+                        tipo = TabelaDeSimbolos.TipoAlguma.REAL;
+                        break;
+               case "logico": 
+                        tipo = TabelaDeSimbolos.TipoAlguma.LOGICO;
+                        break;
+            }
+            escopoAtual.adicionar(ctx.IDENT().getText(), tipo);
         }
 
-        return super.visitDeclaracao_local(ctx);
-
+        return super.visitDeclaracao_constante(ctx);
     }
 
+    @Override
+    public Object visitDeclaracao_tipo(Declaracao_tipoContext ctx) {
+        TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
+        if (escopoAtual.existe(ctx.IDENT().getText())) {
+             AlgumaSemanticoUtils.adicionarErroSemantico(ctx.start, "tipo " + ctx.IDENT().getText()
+                    + " declarado duas vezes num mesmo escopo");
+        } else {
+            escopoAtual.adicionar(ctx.IDENT().getText(), TabelaDeSimbolos.TipoAlguma.TIPO);
+        }
+        return super.visitDeclaracao_tipo(ctx);
+    }
+
+    @Override
+    public Object visitDeclaracao_variavel(Declaracao_variavelContext ctx) {
+        TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
+        for (IdentificadorContext id : ctx.variavel().identificador()) {
+            if (escopoAtual.existe(id.getText())) {
+                AlgumaSemanticoUtils.adicionarErroSemantico(id.start, "identificador " + id.getText()
+                        + " ja declarado anteriormente");
+            } else {
+                TabelaDeSimbolos.TipoAlguma tipo = TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                switch(ctx.variavel().tipo().getText()) {
+                case "literal": 
+                            tipo = TabelaDeSimbolos.TipoAlguma.CADEIA;
+                            break;
+                case "INTEIROeiro": 
+                            tipo = TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                            break;
+                case "real": 
+                            tipo = TabelaDeSimbolos.TipoAlguma.REAL;
+                            break;
+                case "logico": 
+                            tipo = TabelaDeSimbolos.TipoAlguma.LOGICO;
+                            break;
+                }
+                escopoAtual.adicionar(id.getText(), tipo);
+            }
+        }
+        return super.visitDeclaracao_variavel(ctx);
+    }
+
+    @Override
+    public Object visitDeclaracao_global(Declaracao_globalContext ctx) {
+         TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
+        if (escopoAtual.existe(ctx.IDENT().getText())) {
+            AlgumaSemanticoUtils.adicionarErroSemantico(ctx.start, ctx.IDENT().getText()
+                    + " ja declarado anteriormente");
+        } else {
+            escopoAtual.adicionar(ctx.IDENT().getText(), TabelaDeSimbolos.TipoAlguma.TIPO);
+        }
+        return super.visitDeclaracao_global(ctx);
+    }
+
+
+    @Override
+    public Object visitTipo_basico_ident(Tipo_basico_identContext ctx) {
+        if(ctx.IDENT() != null){
+            for(TabelaDeSimbolos escopo : escopos.percorrerEscoposAninhados()) {
+                if(!escopo.existe(ctx.IDENT().getText())) {
+                    AlgumaSemanticoUtils.adicionarErroSemantico(ctx.start, "tipo " + ctx.IDENT().getText()
+                            + " nao declarado");
+                }
+            }
+        }
+        return super.visitTipo_basico_ident(ctx);
+    }
+
+    @Override
+    public Object visitIdentificador(IdentificadorContext ctx) {
+        for(TabelaDeSimbolos escopo : escopos.percorrerEscoposAninhados()) {
+            if(!escopo.existe(ctx.IDENT(0).getText())) {
+                AlgumaSemanticoUtils.adicionarErroSemantico(ctx.start, "identificador " + ctx.IDENT(0).getText()
+                        + " nao declarado");
+            }
+        }
+        return super.visitIdentificador(ctx);
+    }
+
+    @Override
+    public Object visitCmdAtribuicao(CmdAtribuicaoContext ctx) {
+        TabelaDeSimbolos.TipoAlguma tipoExpressao = AlgumaSemanticoUtils.verificar(escopos, ctx.expressao());
+        boolean error = false;
+        String nomeVar = ctx.identificador().getText();
+        if (tipoExpressao != TabelaDeSimbolos.TipoAlguma.INVALIDO) {
+            for(TabelaDeSimbolos escopo : escopos.percorrerEscoposAninhados()){
+                if (escopo.existe(nomeVar))  {
+                    TabelaDeSimbolos.TipoAlguma tipoVariavel = AlgumaSemanticoUtils.verificar(escopos, nomeVar);
+                    Boolean varNumeric = tipoVariavel == TabelaDeSimbolos.TipoAlguma.REAL || tipoVariavel == TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                    Boolean expNumeric = tipoExpressao == TabelaDeSimbolos.TipoAlguma.REAL || tipoExpressao == TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                    if  (!(varNumeric && expNumeric) && tipoVariavel != tipoExpressao && tipoExpressao != TabelaDeSimbolos.TipoAlguma.INVALIDO) {
+                        error = true;
+                    }
+                } 
+            }
+        } else{
+            error = true;
+        }
+
+        if(error)
+            AlgumaSemanticoUtils.adicionarErroSemantico(ctx.identificador().start, "atribuicao nao compativel para " + nomeVar );
+
+        return super.visitCmdAtribuicao(ctx);
+    }
 
 }

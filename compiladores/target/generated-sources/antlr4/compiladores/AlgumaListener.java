@@ -28,6 +28,16 @@ public interface AlgumaListener extends ParseTreeListener {
 	 */
 	void exitDeclaracoes(AlgumaParser.DeclaracoesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#decl_local_global}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecl_local_global(AlgumaParser.Decl_local_globalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#decl_local_global}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecl_local_global(AlgumaParser.Decl_local_globalContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AlgumaParser#declaracao_local}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +47,36 @@ public interface AlgumaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracao_local(AlgumaParser.Declaracao_localContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#declaracao_variavel}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracao_variavel(AlgumaParser.Declaracao_variavelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#declaracao_variavel}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracao_variavel(AlgumaParser.Declaracao_variavelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#declaracao_constante}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracao_constante(AlgumaParser.Declaracao_constanteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#declaracao_constante}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracao_constante(AlgumaParser.Declaracao_constanteContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#declaracao_tipo}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracao_tipo(AlgumaParser.Declaracao_tipoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#declaracao_tipo}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracao_tipo(AlgumaParser.Declaracao_tipoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AlgumaParser#variavel}.
 	 * @param ctx the parse tree
