@@ -17,7 +17,7 @@ NUM_INT
 NUM_REAL 
     :   ('0'..'9')+('.'('0'..'9')+)?
     ;
-
+                                
 // Identificadores
 IDENT
     :   [a-zA-Z][a-zA-Z0-9_]*

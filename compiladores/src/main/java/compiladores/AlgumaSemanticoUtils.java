@@ -12,7 +12,6 @@ import compiladores.AlgumaParser.Fator_logicoContext;
 import compiladores.AlgumaParser.ParcelaContext;
 import compiladores.AlgumaParser.TermoContext;
 import compiladores.AlgumaParser.Termo_logicoContext;
-import compiladores.TabelaDeSimbolos.TipoAlguma;
 
 public class AlgumaSemanticoUtils {
     public static List<String> errosSemanticos = new ArrayList<>();

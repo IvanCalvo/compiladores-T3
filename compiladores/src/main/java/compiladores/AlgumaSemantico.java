@@ -4,13 +4,10 @@ import compiladores.AlgumaParser.Declaracao_globalContext;
 import compiladores.AlgumaParser.Declaracao_constanteContext;
 import compiladores.AlgumaParser.Declaracao_tipoContext;
 import compiladores.AlgumaParser.Declaracao_variavelContext;
-import compiladores.AlgumaParser.Declaracao_localContext;
-import compiladores.AlgumaParser.DeclaracoesContext;
 import compiladores.AlgumaParser.ProgramaContext;
 import compiladores.AlgumaParser.IdentificadorContext;
 import compiladores.AlgumaParser.CmdAtribuicaoContext;
 import compiladores.AlgumaParser.Tipo_basico_identContext;
-import compiladores.TabelaDeSimbolos.TipoAlguma;
 
 public class AlgumaSemantico extends AlgumaBaseVisitor {
     
@@ -74,7 +71,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
                 case "literal": 
                             tipo = TabelaDeSimbolos.TipoAlguma.CADEIA;
                             break;
-                case "INTEIROeiro": 
+                case "inteiro": 
                             tipo = TabelaDeSimbolos.TipoAlguma.INTEIRO;
                             break;
                 case "real": 
