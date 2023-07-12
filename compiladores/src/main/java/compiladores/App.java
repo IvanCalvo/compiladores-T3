@@ -21,11 +21,11 @@ public class App {
             CommonTokenStream cs = new CommonTokenStream(lex); //conversão para token stream
             AlgumaParser parser = new AlgumaParser(cs);
             AlgumaParser.ProgramaContext arvore = parser.programa();   
-            /*AlgumaSemantico as = new AlgumaSemantico();  
+            AlgumaSemantico as = new AlgumaSemantico();  
             as.visitPrograma(arvore);
-            for(String err: SemanticoUtils.errosSemanticos){
+            for(String err: AlgumaSemanticoUtils.errosSemanticos){
                 p.println(err);
-            }*/
+            }
             p.println("Fim da compilacao");
             p.close();
         } catch (Exception e) {
