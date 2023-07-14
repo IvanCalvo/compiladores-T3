@@ -1,12 +1,12 @@
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/AlgumaSemantico.java
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/TabelaDeSimbolos.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaParser.java
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/App.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaVisitor.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaListener.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaBaseVisitor.java
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/Escopos.java
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/AlgumaSemanticoUtils.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaBaseListener.java
-/home/vini/compiladores/compiladores-T3/compiladores/src/main/java/compiladores/MensagemErro.java
-/home/vini/compiladores/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaLexer.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/MensagemErro.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/TabelaDeSimbolos.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaBaseVisitor.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaLexer.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/App.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaBaseListener.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/AlgumaSemanticoUtils.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaParser.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/AlgumaSemantico.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaListener.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/src/main/java/compiladores/Escopos.java
+/media/ivancalvo/HD Linux/UFSCar/Compiladores/Trabalhos/T3/compiladores-T3/compiladores/target/generated-sources/antlr4/compiladores/AlgumaVisitor.java
