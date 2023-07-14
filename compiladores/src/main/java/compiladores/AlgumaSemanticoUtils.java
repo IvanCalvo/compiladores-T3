@@ -17,9 +17,8 @@ public class AlgumaSemanticoUtils {
     public static List<String> errosSemanticos = new ArrayList<>();
     
     public static void adicionarErroSemantico(Token t, String mensagem) {
-        int linha = t.getLine();
-        int coluna = t.getCharPositionInLine();
-        errosSemanticos.add(String.format("Linha %d:%d - %s", linha, coluna, mensagem));
+        int linha = t.getLine();    
+        errosSemanticos.add(String.format("Linha %d: %s", linha, mensagem));
     }
     
     public static TabelaDeSimbolos.TipoAlguma verificar(Escopos escopos, AlgumaParser.ExpressaoContext ctx) {
