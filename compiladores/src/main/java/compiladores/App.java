@@ -1,3 +1,16 @@
+/*
+    Autores:
+    Ivan Duarte Calvo RA: 790739
+    João Ricardo Lopes Lovato RA: 772138
+    Vinícius Borges de Lima RA: 795316
+
+    COMPILAÇÃO:
+    o programa pode ser compilado e rodado através dos seguintes comandos
+        mvn compile
+        mvn package
+        java -jar compiladores-compiladores-jar-with-dependencies.jar entrada.txt saida.txt
+*/
+
 package compiladores;
 import java.io.File;
 import java.io.PrintWriter;
