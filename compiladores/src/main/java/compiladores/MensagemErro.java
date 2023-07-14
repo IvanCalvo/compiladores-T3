@@ -17,19 +17,15 @@ import java.util.BitSet;
 public class MensagemErro implements ANTLRErrorListener {
     public PrintWriter p;
 
-    static boolean error_found = false; // utilizado para evitar impressões após encontrar primeiro erro
+    static boolean error_found = false;
     public MensagemErro(PrintWriter p){
         this.p = p;
     }
 
-   
-
     @Override
     public void syntaxError(Recognizer<?, ?> arg0, Object arg1, int arg2, int arg3, String arg4,
             RecognitionException arg5) {
-        
-        // TODO Auto-generated method stub
-        // Convertnedo token
+    
         Token t = (Token) arg1;
         String text = t.getText();
         text = (text.equals("<EOF>")) ? "EOF" : text;
@@ -38,13 +34,13 @@ public class MensagemErro implements ANTLRErrorListener {
         if(!error_found){
             MensagemErro.error_found = true;
 
-            if(aType == "Nao_Fechado"){ //Caso seja comentario nao fechado
+            if(aType == "Nao_Fechado"){
                 p.println("Linha " + t.getLine() + ": " + "comentario nao fechado");
             }
-            else if(aType == "Literal_Nao_Fechada"){ //Caso seja literal/string não fechada
+            else if(aType == "Literal_Nao_Fechada"){
                 p.println("Linha " + t.getLine() + ": " + "cadeia literal nao fechada");
             }
-            else if(aType == "ERR"){ //Caso o símbolo não seja reconhecido
+            else if(aType == "ERR"){
                 p.println("Linha " + t.getLine() + ": " + text + " - simbolo nao identificado");
             }
             else{

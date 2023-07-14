@@ -5,7 +5,7 @@
     Vinícius Borges de Lima RA: 795316
 
     -> para gerar os arquivos é utilizado o seguinte comando:
-        antlr4 -Dlanguage=Python3 Alguma.g4
+        mvn generate-sources
 */
 
 grammar Alguma;
