@@ -32,8 +32,8 @@ public class MensagemErro implements ANTLRErrorListener {
         // Convertnedo token
         Token t = (Token) arg1;
         String text = t.getText();
-        if(text == "<EOF>")
-            text = "EOF";
+        text = (text.equals("<EOF>")) ? "EOF" : text;
+        
         String aType = AlgumaLexer.VOCABULARY.getDisplayName(t.getType()); // Converte o tipo desse token para string
         if(!error_found){
             MensagemErro.error_found = true;

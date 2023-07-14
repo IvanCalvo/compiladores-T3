@@ -17,8 +17,8 @@ public class App {
             AlgumaParser.ProgramaContext arvore = parser.programa();   
             AlgumaSemantico as = new AlgumaSemantico();  
             as.visitPrograma(arvore);
-            for(String err: AlgumaSemanticoUtils.errosSemanticos){
-                p.println(err);
+            for(String error: AlgumaSemanticoUtils.errosSemanticos){
+                p.println(error);
             }
             p.println("Fim da compilacao");
             p.close();

@@ -11,6 +11,7 @@ import compiladores.AlgumaParser.Tipo_basico_identContext;
 
 public class AlgumaSemantico extends AlgumaBaseVisitor {
     
+    //Criando o objeto do escopo
     Escopos escopos = new Escopos();
 
     @Override
@@ -18,6 +19,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitPrograma(ctx);
     }
 
+    //verifica se a constante foi declarada anteriormente (ela não pode ser alterada por se tratar de uma constante)
     @Override
     public Object visitDeclaracao_constante(Declaracao_constanteContext ctx) {
         TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
@@ -46,6 +48,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitDeclaracao_constante(ctx);
     }
 
+    //verifica se o tipo foi declarado duas vezes
     @Override
     public Object visitDeclaracao_tipo(Declaracao_tipoContext ctx) {
         TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
@@ -58,6 +61,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitDeclaracao_tipo(ctx);
     }
 
+    //verifica se a variável declarada já foi declarada anteriormente no escopo atual
     @Override
     public Object visitDeclaracao_variavel(Declaracao_variavelContext ctx) {
         TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
@@ -87,6 +91,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitDeclaracao_variavel(ctx);
     }
 
+    //verifica se a variável global já foi declarada 
     @Override
     public Object visitDeclaracao_global(Declaracao_globalContext ctx) {
          TabelaDeSimbolos escopoAtual = escopos.obterEscopoAtual();
@@ -113,6 +118,8 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitTipo_basico_ident(ctx);
     }
 
+    //verifica se o identificador existe
+
     @Override
     public Object visitIdentificador(IdentificadorContext ctx) {
         for(TabelaDeSimbolos escopo : escopos.percorrerEscoposAninhados()) {
@@ -124,6 +131,7 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
         return super.visitIdentificador(ctx);
     }
 
+    //verifica se a atribuição é válida
     @Override
     public Object visitCmdAtribuicao(CmdAtribuicaoContext ctx) {
         TabelaDeSimbolos.TipoAlguma tipoExpressao = AlgumaSemanticoUtils.verificar(escopos, ctx.expressao());
@@ -133,8 +141,8 @@ public class AlgumaSemantico extends AlgumaBaseVisitor {
             for(TabelaDeSimbolos escopo : escopos.percorrerEscoposAninhados()){
                 if (escopo.existe(nomeVar))  {
                     TabelaDeSimbolos.TipoAlguma tipoVariavel = AlgumaSemanticoUtils.verificar(escopos, nomeVar);
-                    Boolean varNumeric = tipoVariavel == TabelaDeSimbolos.TipoAlguma.REAL || tipoVariavel == TabelaDeSimbolos.TipoAlguma.INTEIRO;
-                    Boolean expNumeric = tipoExpressao == TabelaDeSimbolos.TipoAlguma.REAL || tipoExpressao == TabelaDeSimbolos.TipoAlguma.INTEIRO;
+                    Boolean expNumeric = tipoExpressao == TabelaDeSimbolos.TipoAlguma.INTEIRO || tipoExpressao == TabelaDeSimbolos.TipoAlguma.REAL ;
+                    Boolean varNumeric = tipoVariavel == TabelaDeSimbolos.TipoAlguma.INTEIRO || tipoVariavel == TabelaDeSimbolos.TipoAlguma.REAL;
                     if  (!(varNumeric && expNumeric) && tipoVariavel != tipoExpressao && tipoExpressao != TabelaDeSimbolos.TipoAlguma.INVALIDO) {
                         error = true;
                     }
